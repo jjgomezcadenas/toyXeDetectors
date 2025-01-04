@@ -6,7 +6,7 @@
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
 <title>HDDesgin slides</title><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script><script type="module">
-  import mermaid from 'https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.0/mermaid.esm.min.mjs';
+  import mermaid from 'https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.7.0/mermaid.esm.min.mjs';
   mermaid.initialize({ startOnLoad: true });
 </script>
 <!-- General and theme style sheets -->
@@ -7494,7 +7494,7 @@ main {
 <li><p>Tracking plane. Can be sparse (<strong>STP</strong>) o dense (<strong>DTP</strong>).</p>
 <ul>
 <li>Both STP and DTP can perform the tracking function.</li>
-<li>DTP can measure energy (and S1) better than STP.</li>
+<li>DTP can measure energy (and ideally also S1).</li>
 </ul>
 </li>
 <li><p>Barrel Fiber Detector (<strong>BFD</strong>) readout by cooled SiPMs.</p>
@@ -7530,7 +7530,7 @@ main {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Dark-Current-considerations">Dark Current considerations<a class="anchor-link" href="#Dark-Current-considerations">¶</a></h2><ul>
-<li>Let us examine first the dependence of the dark current, DC (expressed as a dark rate) of SiPMs with temperature.</li>
+<li>Let us examine first the dependence of the dark current rate (dcR) of SiPMs with temperature.</li>
 <li>We take as model the modern, low DC, Hamamatsu data S13360 series</li>
 </ul>
 </div>
@@ -7570,9 +7570,9 @@ main {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Operating-temperature-and-pressure">Operating temperature and pressure<a class="anchor-link" href="#Operating-temperature-and-pressure">¶</a></h2><ul>
-<li>For this discussion I will assume that HD operated at P=20 bar, T= 20C. Notice that the density of the gas in this case is the same than when operating the detector at P=15 bar, T=-40C.</li>
-<li>At P=20 bar, T= 20C, a detector of R= 110 cm and L/2 = 110 cm (e.g, the length of one of the two symmetric TPCs) has a total mass of 1040 kg</li>
-<li>With these dimensions, the area to be instrumented is 3.8 m$^2$ per DSP, that is a total of 7.6 m$^2$, e.g., almost twice the area required by nEXO.</li>
+<li>For this discussion I will assume that HD operates at P=20 bar, T= 20C. Notice that the density of the gas in this case is the same than when operating the detector at P=15 bar, T=-40C. <em>This is relevant, because VUVHD needs to operate with cool gas</em></li>
+<li>At P=20 bar, T= 20C (<em>or at P=15 bar T=-40C</em>), a detector of <strong>R= 110 cm</strong> and <strong>L/2 = 110 cm</strong> (e.g, the length of one of the two symmetric TPCs) has a total mass of <strong>1040 kg</strong></li>
+<li>With these dimensions, the area to be instrumented is <strong>3.8 m$^2$</strong> per end-cap, that is a total of <strong>7.6 m$^2$</strong> for the DSP, e.g., almost twice the area required by nEXO.</li>
 </ul>
 </div>
 </div>
@@ -7629,28 +7629,20 @@ area of end-caps = 3.80 m2
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="EL-Parameters">EL Parameters<a class="anchor-link" href="#EL-Parameters">¶</a></h2><ul>
 <li>A higher pressure (density) is is enough with E/P ~1.5 to achieve an amplification gain ~1000.</li>
-<li>The high voltages are challenging (~15 kV in the grid and 75 kV in the cathode), but can presumably be achieved, with enough R&amp;D</li>
+<li>The high voltages are challenging (~<strong>15 kV</strong> in the gate and <strong>75 kV</strong> in the cathode), but can presumably be achieved, with enough R&amp;D</li>
 </ul>
 </div>
 </div>
 </div>
-</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5ded6549-e9ce-4a5c-8478-a297e787ee4e">
+</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=faefe328-9297-4b27-a6e8-faf4339983a6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [120]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">EP</span>  <span class="o">=</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">kilovolt</span> <span class="o">/</span> <span class="p">(</span><span class="n">cm</span> <span class="o">*</span> <span class="n">bar</span><span class="p">)</span>
-<span class="n">dV</span>  <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">kilovolt</span> <span class="o">/</span> <span class="n">cm</span>
-<span class="n">P</span>   <span class="o">=</span>  <span class="mi">20</span> <span class="o">*</span> <span class="n">bar</span>
-<span class="n">d</span>   <span class="o">=</span>  <span class="mi">5</span> <span class="o">*</span> <span class="n">mm</span>
-<span class="n">L</span>   <span class="o">=</span> <span class="mi">120</span> <span class="o">*</span> <span class="n">cm</span>
-<span class="n">Ws</span>  <span class="o">=</span>  <span class="mf">39.2</span> <span class="o">*</span> <span class="n">eV</span>
-<span class="n">Wi</span>  <span class="o">=</span>  <span class="mf">21.9</span> <span class="o">*</span> <span class="n">eV</span>
-<span class="n">hdel</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">TpcEL</span><span class="p">(</span><span class="n">EP</span><span class="p">,</span> <span class="n">dV</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">Ws</span><span class="p">,</span> <span class="n">Wi</span><span class="p">)</span>
-<span class="n">hdel</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">hdel</span>
 </pre></div>
 </div>
 </div>
@@ -7661,7 +7653,7 @@ area of end-caps = 3.80 m2
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[28]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[120]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>
         E/P =    1.50 kV * cm^-1* bar^-1
@@ -7690,7 +7682,7 @@ area of end-caps = 3.80 m2
 </div>
 </div>
 </div>
-</div>
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4315692a-9c76-4fa6-8d50-c32bd322a2eb">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -7698,9 +7690,9 @@ area of end-caps = 3.80 m2
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Cooling-the-SiPMs-in-VUVHD">Cooling the SiPMs in VUVHD<a class="anchor-link" href="#Cooling-the-SiPMs-in-VUVHD">¶</a></h2><ul>
-<li><p>The number of SiPMs in VUVHD is ~$3.8 \times 10^4$~per DSP plane, assuming that the detector is fully tiled. Assuming 2 mW per channel for the readout ASIC the dissipated power is 152 W (to compare with 100 W design specs for nEXO).</p>
+<li><p>The number of SiPMs in VUVHD is <strong>$3.8 \times 10^4$</strong> per DSP plane, assuming that the detector is fully tiled. Assuming 8 mW per channel for the readout ASIC the dissipated power is <strong>640 W</strong> (to compare with 100 W design specs for nEXO).</p>
 </li>
-<li><p>At the same time, the SiPMs need to operate at low temperature to reduce dcR to reasonsable values. Ideally one would like to see the Krypton S1 signal, in particular in the case of a DTP with filling factor substantially less than one, for calibration purposes. If this is not possible, one should see at least the signal from Na-22 sources (511 keV).</p>
+<li><p>At the same time, the SiPMs need to operate at low temperature to reduce dcR to reasonsable values. Ideally one would like to see the Krypton S1 signal for calibration purposes, in particular in the case of a DTP with filling factor substantially less than one. If this is not possible, one should see at least the signal from Na-22 sources (511 keV).</p>
 </li>
 </ul>
 </div>
@@ -7713,120 +7705,20 @@ area of end-caps = 3.80 m2
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="The-DTP">The DTP<a class="anchor-link" href="#The-DTP">¶</a></h2><ul>
-<li>We will consider first a DTP fully tiling up the anode(s), made of vSiPMs of 10 x 10 mm2 at a pitch of 10 mm. The PDE corresponds to the last generation of Hamamatsu SiPMs (PDE = 30 %).</li>
-<li>The DTP has 3.8 x 10$^4$ SiPMs per Plane covering an area of 3.8 x 10$^6$ mm2.</li>
-<li>The DC at t = -40 C is 91 counts per window of 500 ns (S1 detection window) and per DTP. At -30 C DC is 261 counts per plane and at T=-20 is 757 counts per plane.</li>
-<li>A rough estimation of the geometrical efficiency (neglecting reflections in the barrel, assuming VUV light) is ~15 %</li>
-<li>A rough estimation of the transparency of the grids is 90%. Since VUV light needs to go through 2 grids, the overal transparency will be 80 %.</li>
-<li>Finally, the PDE of the SiPMs is 30 %. Thus the total light transport efficiency is ~3.5 %</li>
-<li>This assumes that both DTPs are used to record S1 (and thus one has to add the DC of the two DTPs).</li>
+<h2 id="The-fDTP-(in-VUV)">The fDTP (in VUV)<a class="anchor-link" href="#The-fDTP-(in-VUV)">¶</a></h2><ul>
+<li>We will consider first a DTP fully tiling up the anodes (<strong>fDTP</strong>), made of vSiPMs of $10 \times 10$ mm$^2$ at a pitch of 10 mm. The PDE corresponds to the last generation of Hamamatsu SiPMs (<strong>PDE = 30 %</strong>).</li>
+<li>The DTP has $3.8 \times 10^4$ SiPMs per Plane covering an area of $3.8 \times 10^6$ mm$^2$.</li>
+<li><strong>The dcR at t = -40 C is 91 counts per window of 500 ns (S1 detection window) and per DTP</strong>. At T=-30C dcR=261 cs per plane and at T=-20 dcR=757 cs per plane.</li>
+<li><strong>Optical efficiency for S1</strong> (both DSTP planes used to record S1)<ul>
+<li>Geometrical efficiency: $\epsilon_g \sim 0.15$ (neglecting reflections in the barrel, assuming VUV light)</li>
+<li>Grid transparency: $\epsilon_g \sim 0.9^2$</li>
+<li>SiPMs PDE: $\epsilon_{PDE} = 0.15$</li>
 </ul>
-</div>
-</div>
-</div>
-</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2ce50fdc-7019-4e6d-91fe-f1baaf009e42">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">vsipm</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">SiPM</span><span class="p">(</span><span class="s2">"s10x10"</span><span class="p">,</span> <span class="mi">10</span><span class="o">*</span><span class="n">mm</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span> 
-<span class="n">vsipm</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[29]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>
-        sensor =s10x10, size = 10.0 mm, PDE = 0.3
-        DCR per u.a. (tC = 20C) = 2.8e+04 Hz/mm2;
-        DCR per u.a time window (tC = 20C, t=500 ns) = 0.014 cs/mm2;
-        </pre>
-</div>
-</div>
-</div>
-</div>
-</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=91b6c167-d8e0-40f3-aad0-db2afad68677">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">dtp</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">DTP</span><span class="p">(</span><span class="n">vsipm</span><span class="p">,</span> <span class="n">Rg</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-<span class="n">dtp</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[33]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>
-        DTP: Fill factor = 1.0
-        area = 3.8e+06 mm2, number of SiPMs = 3.8e+04
-        SiPMs: 
-        sensor =s10x10, size = 10.0 mm, PDE = 0.3
-        DCR per u.a. (tC = 20C) = 2.8e+04 Hz/mm2;
-        DCR per u.a time window (tC = 20C, t=500 ns) = 0.014 cs/mm2;
-        
-        DCR  (tC = 20C) = 1.1e+11 Hz;
-        DCR  time window (tC = 20C, t=500 ns) = 5.3e+04 counts;
-        
-        </pre>
-</div>
-</div>
-</div>
-</div>
-</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a4ae9815-6fd7-4754-bf66-993865f8667b">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [56]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">Lhalf</span> <span class="o">=</span> <span class="p">(</span><span class="n">zmax</span> <span class="o">-</span> <span class="n">zmin</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="n">eff_barrel</span> <span class="o">=</span> <span class="n">barrel_detection_efficiency</span><span class="p">(</span><span class="n">Rg</span><span class="p">,</span> <span class="n">Lhalf</span><span class="p">)</span> <span class="c1"># L in the equation is semilength </span>
-<span class="n">eff_ecup</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">eff_barrel</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"eff_barrel = </span><span class="si">{</span><span class="n">eff_barrel</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"eff_endcup = </span><span class="si">{</span><span class="n">eff_ecup</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="n">eff_mesh</span> <span class="o">=</span> <span class="mf">0.9</span>
-<span class="n">eff_tot</span> <span class="o">=</span> <span class="n">eff_mesh</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">eff_ecup</span><span class="o">*</span><span class="n">vsipm</span><span class="o">.</span><span class="n">pde</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Transport efficiency for the DTP = </span><span class="si">{</span><span class="n">eff_tot</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>eff_barrel = 0.8536776763694542
-eff_endcup = 0.14632232363054576
-Transport efficiency for the DTP = 0.03555632464222262
-</pre>
-</div>
+</li>
+</ul>
+<p>$$
+\epsilon_{total} = \epsilon_g \times \epsilon_g \times \epsilon_{PDE} = 0.035
+$$</p>
 </div>
 </div>
 </div>
@@ -7924,11 +7816,11 @@ Primary scintillation 511 keV detected = 4.64e+02
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="VUVHD-requires-cold-gas-operation">VUVHD requires cold gas operation<a class="anchor-link" href="#VUVHD-requires-cold-gas-operation">¶</a></h2><ul>
+<h2 id="fDTP-requires-cold-gas-operation">fDTP requires cold gas operation<a class="anchor-link" href="#fDTP-requires-cold-gas-operation">¶</a></h2><ul>
 <li>The S1 signal detected for krypton is ~38 pes, and for Na22 (511 keV) 464 pes</li>
 <li>Thus, Kr cannot be observed at -40 C, but 511 keV from Na-22 can be observed with S/N~2.5. At higher temperatures Na22 cannot be observed.</li>
-<li>Thus, the minimum operating temperature for the SiPMs is -40 C.</li>
-<li>With a power dissipation of 150 W and the requirement to cool uniformly ~80k SiPMs to -40 C, the most realistic option is operation with cold gas.</li>
+<li>Thus, the <strong>minimum operating temperature for the SiPMs is -40 C</strong>.</li>
+<li>With a power dissipation of 640 W and the requirement to cool uniformly ~80k SiPMs to -40 C, the most realistic option is <strong>operation with cold gas</strong>.</li>
 </ul>
 </div>
 </div>
@@ -8007,6 +7899,56 @@ Primary scintillation 511 keV detected = 4.64e+02
 </div>
 </div>
 </div>
+</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4d031eec-7048-4fbc-a17c-8b7835ee21bc">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">kHz</span><span class="o">/</span><span class="n">mm2</span>
+<span class="n">dcm40</span> <span class="o">=</span><span class="n">pn</span><span class="o">.</span><span class="n">dc_mm2</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="p">)</span> <span class="o">/</span> <span class="n">u</span>
+<span class="n">dcm50</span> <span class="o">=</span><span class="n">pn</span><span class="o">.</span><span class="n">dc_mm2</span><span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">)</span> <span class="o">/</span><span class="n">u</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"DC/mm2 of Silicon at -40 C = </span><span class="si">{</span><span class="n">dcm40</span><span class="si">:</span><span class="s2">.2g</span><span class="si">}</span><span class="s2"> kHz/mm2"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"DC/mm2 of Silicon at -50 C = </span><span class="si">{</span><span class="n">dcm50</span><span class="si">:</span><span class="s2">.2g</span><span class="si">}</span><span class="s2"> kHz/mm2"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"DC ratio -40/-50 = </span><span class="si">{</span><span class="n">dcm40</span><span class="o">/</span><span class="n">dcm50</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Mass ratio -40/-50 = </span><span class="si">{</span><span class="n">pn</span><span class="o">.</span><span class="n">rhoXe</span><span class="p">[</span><span class="s1">'xe_15m40'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">pn</span><span class="o">.</span><span class="n">rhoXe</span><span class="p">[</span><span class="s1">'xe_10m50'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>DC/mm2 of Silicon at -40 C = 0.048 kHz/mm2
+DC/mm2 of Silicon at -50 C = 0.017 kHz/mm2
+DC ratio -40/-50 = 2.889512931355543
+Mass ratio -40/-50 = 1.5749999999999997
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=142740d0-7b22-4349-912f-eea94bfc3260">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="fDTP:-challenge-for-the-ASIC">fDTP: challenge for the ASIC<a class="anchor-link" href="#fDTP:-challenge-for-the-ASIC">¶</a></h2><ul>
+<li>The capacitance of 10 x 10 mm$^2$ SiPMs is very large, making a fine sampling of the signal challenging. A realistic size for the SiPMs is 6 x 6 mm$^2$. This increases the number of SiPMs and the number of electronic channels by a factor 3.6.</li>
+<li>Notice that the cost of SiPMs is proportional to the area covered by silicon, not to the SiPM size. On the other hand, the cost of the electronics is proportional to the number of channels.</li>
+</ul>
+</div>
+</div>
+</div>
 </div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=516b8cfc-8d25-47ce-b49e-1ae15c750bd5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
@@ -8014,9 +7956,11 @@ Primary scintillation 511 keV detected = 4.64e+02
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Cost-of-the-DTP">Cost of the DTP<a class="anchor-link" href="#Cost-of-the-DTP">¶</a></h2><ul>
-<li>Cost of the SiPMs (estimation from Hamamatsu offer) (2.96 €/mm2). This is a total cost of 22.5 M€ for both planes.</li>
-<li>Cost of the electronics and DAQ (20 €/channel) (1.5 M€)</li>
+<h2 id="Cost-of-the-fDTP">Cost of the fDTP<a class="anchor-link" href="#Cost-of-the-fDTP">¶</a></h2><ul>
+<li>Cost of the SiPMs (estimation from Hamamatsu offer) (2.96 €/mm$^2$). This is a total cost of <strong>22.5 M€</strong> for both planes.</li>
+<li>Cost of the electronics and DAQ (20 €/channel) (<strong>5.5 M€</strong>)</li>
+<li>To this cost one has to add the cost of DAQ, processing and storage, which is very significant, give the very high throughput.</li>
+<li>A realistic guess with today's prices of the cost of fDTP is ~<strong>30 M€</strong>.</li>
 </ul>
 </div>
 </div>
@@ -8066,11 +8010,11 @@ Ratio VUV/Blue = 7.645739910313901
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [58]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [110]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cost of DTP silicon (2 planes) </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sipm_vuv_cost_mm2</span><span class="o">*</span><span class="w"> </span><span class="n">hdtp</span><span class="o">.</span><span class="n">dtp</span><span class="o">.</span><span class="n">area</span><span class="o">/</span><span class="n">mm2</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> €"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cost of DTP electronics) </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">20</span><span class="o">*</span><span class="w"> </span><span class="n">hdtp</span><span class="o">.</span><span class="n">dtp</span><span class="o">.</span><span class="n">n_sipm</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> €"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cost of DTP electronics) </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">20</span><span class="o">*</span><span class="w"> </span><span class="mf">3.6</span><span class="o">*</span><span class="w"> </span><span class="n">hdtp</span><span class="o">.</span><span class="n">dtp</span><span class="o">.</span><span class="n">n_sipm</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> €"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8084,7 +8028,7 @@ Ratio VUV/Blue = 7.645739910313901
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>cost of DTP silicon (2 planes) 2.25e+07 €
-cost of DTP electronics) 1.52e+06 €
+cost of DTP electronics) 5.47e+06 €
 </pre>
 </div>
 </div>
@@ -8097,185 +8041,13 @@ cost of DTP electronics) 1.52e+06 €
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="DTP-with-partial-coverage">DTP with partial coverage<a class="anchor-link" href="#DTP-with-partial-coverage">¶</a></h2><ul>
-<li>Consider for example SiPMs of 6 x 6 mm$^2$ at a pitch of 10 mm (36 % coverage).</li>
-<li>Corrections to energy resolution to be studied.</li>
-<li>Enough light to see S1 for Na22 and above (no S1 from Krypton)</li>
-<li>Cost reduced to ~8M€ (+ 1.5 M€ for electronics).</li>
+<h2 id="pDTP-(DTP-with-partial-coverage)">pDTP (DTP with partial coverage)<a class="anchor-link" href="#pDTP-(DTP-with-partial-coverage)">¶</a></h2><ul>
+<li>While the fDTP guarantees be best measurement of S2 (since it records most of the light with negligible cracks, thus minimizing geometrical corrections), a pDTP instrumenting only a fraction of the surface may be a more realistic option, <strong>if the impact in the energy resolution is not too large</strong>.</li>
+<li>Interestingly the pDTP has similar performance than the fDTP for observing S1. This is due to the fact that both signal and dcR decrease linearly with area.</li>
+<li>On the other hand, the performance concerning the measurement of S2 need to be carefully quantified.</li>
+<li>The cost is reduced to ~8M€ (+ 1.5 M€ for electronics).</li>
+<li>A realistic guess with today's prices of the cost of pDTP is ~<strong>10 M€</strong>.</li>
 </ul>
-</div>
-</div>
-</div>
-</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54bd43c6-ac6e-4097-a0aa-ba03c9429e47">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [68]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">dtp2</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">DTP</span><span class="p">(</span><span class="n">vsipm</span><span class="p">,</span> <span class="n">Rg</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">)</span>
-<span class="n">dtp2</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[68]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>
-        DTP: Fill factor = 0.36
-        area = 3.8e+06 mm2, number of SiPMs = 3.8e+04
-        SiPMs: 
-        sensor =s10x10, size = 10.0 mm, PDE = 0.3
-        DCR per u.a. (tC = 20C) = 2.8e+04 Hz/mm2;
-        DCR per u.a time window (tC = 20C, t=500 ns) = 0.014 cs/mm2;
-        
-        DCR  (tC = 20C) = 3.8e+10 Hz;
-        DCR  time window (tC = 20C, t=500 ns) = 1.9e+04 counts;
-        
-        </pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f13c0401-799f-4a2c-96c3-ae15c39f28d5">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [75]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">hdtp2</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">DTPDetector</span><span class="p">(</span><span class="n">hdel</span><span class="p">,</span> <span class="n">hdxe</span><span class="p">,</span> <span class="n">dtp2</span><span class="p">,</span> <span class="n">eff_grid</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">sampling</span><span class="o">=</span><span class="mi">500</span><span class="o">*</span><span class="n">ns</span><span class="p">,</span> <span class="n">tempC</span><span class="o">=-</span><span class="mi">40</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">hdtp2</span><span class="p">)</span>
-<span class="n">s1511d</span> <span class="o">=</span> <span class="n">hdtp2</span><span class="o">.</span><span class="n">tpcel</span><span class="o">.</span><span class="n">scintillation_photons</span><span class="p">(</span><span class="mi">511</span> <span class="o">*</span> <span class="n">keV</span><span class="p">)</span><span class="o">*</span> <span class="n">hdtp2</span><span class="o">.</span><span class="n">efficiency_s1</span> <span class="o">*</span><span class="mf">0.36</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Primary scintillation 511 keV detected = </span><span class="si">{</span><span class="n">s1511d</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-        gas pressure  =   20.00 bar
-        gas density   =    0.12 g/cm3
-        gas mass      = 1039.51  kg
-
-        Dimensions(Cylinder)  = 
-        Cylinder: radius =1100.0 mm, length = 2200.0 mm
-        
-
-        Light efficiency (s1) = 3.56 %
-        Light efficiency (s2) = 13.50 %
-        SiPM PDE          = 0.30
-        SiPM size         = 10.00 mm
-        Sampling S1       = 500.00 ns
-
-        Primary scintillation Krypton          = 1.06e+03
-        EL photons Krypton                     = 1.78e+06
-        Primary scintillation Qbb              = 6.27e+04
-        EL photons Qbb                         = 1.06e+08
-
-        Primary scintillation Krypton detected = 1.36e+01
-        EL photons Krypton detected            = 8.66e+04
-        Primary scintillation Qbb detected     = 8.03e+02
-        EL photons Qbb detected                = 5.13e+06
-
-
-        Number of DCR photons in the detector for:
-         --operating temperature (-40.00 C)
-         --sampling time of 500.00
-         -- nDCR = 65.27
-        
-Primary scintillation 511 keV detected = 1.67e+02
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=beb1e0f9-35e3-486e-b726-1f1b345de077">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [60]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cost of DTP silicon (2 planes, f=0.36) </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.36</span><span class="o">*</span><span class="w"> </span><span class="n">sipm_vuv_cost_mm2</span><span class="o">*</span><span class="w"> </span><span class="n">hdtp</span><span class="o">.</span><span class="n">dtp</span><span class="o">.</span><span class="n">area</span><span class="o">/</span><span class="n">mm2</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> €"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cost of DTP electronics) </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">20</span><span class="o">*</span><span class="w"> </span><span class="n">hdtp</span><span class="o">.</span><span class="n">dtp</span><span class="o">.</span><span class="n">n_sipm</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> €"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>cost of DTP silicon (2 planes, f=0.36) 8.10e+06 €
-cost of DTP electronics) 1.52e+06 €
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5ece4043-e7b8-43e4-9cfa-a03dd74e7ccf">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Cost-of-the-Sparse-(Blue)-Tracking-Plane">Cost of the Sparse (Blue) Tracking Plane<a class="anchor-link" href="#Cost-of-the-Sparse-(Blue)-Tracking-Plane">¶</a></h2><ul>
-<li>For reference, the sparse tracking plane (STP) using blue SiPMs coated with TPB requires 100 timess less silicon area, than the fully tiled DTP, uses cheaper SiPMs and requires cheaper electronics (~10 €/channel).</li>
-<li>The cost of the SiPMs is reduced to ~30 k€</li>
-<li>The cost of the electronics becomes dominant ~700 k€</li>
-<li>The total cost is &lt;1 M€</li>
-</ul>
-</div>
-</div>
-</div>
-</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c3d2569a-6233-47b2-a37c-68c38f35fb9b">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [107]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cost of STP silicon (2 planes, f=0.1) </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.01</span><span class="o">*</span><span class="w"> </span><span class="n">sipm_cost_mm2</span><span class="o">*</span><span class="w"> </span><span class="n">hdtp</span><span class="o">.</span><span class="n">dtp</span><span class="o">.</span><span class="n">area</span><span class="o">/</span><span class="n">mm2</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> €"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cost of DTP electronics) </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">10</span><span class="o">*</span><span class="w"> </span><span class="n">hdtp</span><span class="o">.</span><span class="n">dtp</span><span class="o">.</span><span class="n">n_sipm</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> €"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>cost of STP silicon (2 planes, f=0.1) 2.94e+04 €
-cost of DTP electronics) 7.60e+05 €
-</pre>
-</div>
 </div>
 </div>
 </div>
@@ -8286,10 +8058,11 @@ cost of DTP electronics) 7.60e+05 €
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="DTP-Requirements-and-implications-for-the-ASIC">DTP Requirements and implications for the ASIC<a class="anchor-link" href="#DTP-Requirements-and-implications-for-the-ASIC">¶</a></h2><ul>
-<li>Observe S1 from Na-22 onwards. This requires extracting the full waveform (without ZS) from each one of the ~80K SiPMs.</li>
-<li>Measure energy with excelent resolution from S2. This requires spe calibration).</li>
-<li>At the same time S2 should not saturate the SiPMs.</li>
+<h2 id="DTP-Requirements-and-implications-for-the-ASIC-and-DAQ">DTP Requirements and implications for the ASIC and DAQ<a class="anchor-link" href="#DTP-Requirements-and-implications-for-the-ASIC-and-DAQ">¶</a></h2><ul>
+<li>The following discussion applies for a fDTP (with SiPMs of 10 x 10 mm$^2$) or a pDTP (with SiPMs of 6 x 6 mm$^2$), with the caveats discussed above.</li>
+<li>the DTP must be able to sbserve S1 from Na-22 onwards. This requires extracting the full waveform (without ZS) from each one of the ~80K SiPMs.</li>
+<li>it needs to eeasure energy with excelent resolution from S2. This requires spe calibration, as well as Kr calibration. A potential (but solvable) handicap is that the DTP cannot observe S1 from Krypton.</li>
+<li>While observing spe is a must, S2 should not saturate the SiPMs.</li>
 </ul>
 </div>
 </div>
@@ -8302,7 +8075,7 @@ cost of DTP electronics) 7.60e+05 €
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Measuring-S1">Measuring S1<a class="anchor-link" href="#Measuring-S1">¶</a></h2><ul>
-<li>The pes/SiPM in the DTP is $\sim 4 \times 10^{-3}$. This means that most SiPMs will not observe S1, and those who have a signal will have a single pe. These cannot be distinguished from DC counts (zero in most SiPMs) until the full waveforms from all the SiPMs are added. Given the sparse signal, ZS appears unfeasible.</li>
+<li>The pes/SiPM in the DTP is $\sim 4 \times 10^{-3}$. This means that most SiPMs will measure only noise, and those who have a signal will have a single pe. These cannot be distinguished from DC counts (zero in most SiPMs) until the full waveforms from all the SiPMs are added. <strong>Given the sparse signal, ZS appears unfeasible</strong>.</li>
 <li>Each event will take 11.7 GB, posing significant challenges to DAQ and storage</li>
 </ul>
 </div>
@@ -8368,17 +8141,6 @@ dcr/SiPM for 511 keV S1 = 1.72e-03
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7523533d-c79c-4671-9761-95048005391a">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Dinamic-range">Dinamic range<a class="anchor-link" href="#Dinamic-range">¶</a></h2>
-</div>
-</div>
-</div>
 </div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6501aa8a-af93-4748-b961-8f5adfe8df5d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
@@ -8388,8 +8150,9 @@ dcr/SiPM for 511 keV S1 = 1.72e-03
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Dynamic-range">Dynamic range<a class="anchor-link" href="#Dynamic-range">¶</a></h2><ul>
 <li>Kr is a point-like signal. After diffusion and passing through the grid, the signal is distributed in around 10 mus. Assuming we read each 0.5 mus, the signal per sample is
-$8.7 \times 10^4/20 = 4350$ pes. Of these about 124 pes are detected by the SiPM receiving the maximum signal (here I am assuming 6 x 6 mm2). If we want a dynamic range from 1 pes (needed for S1) and 124 pes (needed for S2 Kr), we need a 12 bit ADC (with a maximum of 20 ADC counts per pes, which is rather limit when we want to detect comfortably 1 pes).</li>
-<li>On the other hand, the blobs of a double electron have tipically 300 keV of energy, or 6 times the energy of the krypton. This will saturate even a 13 bits ADC.</li>
+$8.7 \times 10^4/20 = 4350$ pes. Of these about 124 pes are detected by the SiPM receiving the maximum signal (here I am assuming 6 x 6 mm$^2$, the situation is worse for 10 x 10 mm$^2$).
+-If we want a dynamic range from 1 pes (needed for S1) and 124 pes (needed for S2 Kr), we need a 12 bit ADC (with a maximum of 15 ADC counts per pes).</li>
+<li>On the other hand, the blobs of a double electron have tipically 300 keV of energy, or 6 times the energy of the krypton. <strong>This will saturate even a 13 bits ADC.</strong></li>
 </ul>
 </div>
 </div>
@@ -8399,16 +8162,15 @@ $8.7 \times 10^4/20 = 4350$ pes. Of these about 124 pes are detected by the SiPM
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [100]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [114]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">nkR</span> <span class="o">=</span> <span class="mf">8.7e+4</span><span class="o">/</span><span class="mi">20</span>
 <span class="n">nhkr</span> <span class="o">=</span> <span class="n">nhits</span><span class="p">(</span><span class="n">nkR</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"pes in SiPM for kR = </span><span class="si">{</span><span class="n">nhkr</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"pes in SiPM for Qbb blob = </span><span class="si">{</span><span class="mi">6</span><span class="o">*</span><span class="n">nhkr</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"maxpes for 12 bit ADC = </span><span class="si">{</span><span class="n">maxpes</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"maxpes for 12 bit ADC = </span><span class="si">{</span><span class="n">maxpes</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"maxpes for 13 bit ADC = </span><span class="si">{</span><span class="n">maxpes</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"maxpes for 12 bit ADC = </span><span class="si">{</span><span class="n">maxpes</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"maxpes for 13 bit ADC = </span><span class="si">{</span><span class="n">maxpes</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8422,16 +8184,15 @@ $8.7 \times 10^4/20 = 4350$ pes. Of these about 124 pes are detected by the SiPM
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>pes in SiPM for kR = 124.6
-pes in SiPM for blob = 747.7
-maxpes for 12 bit ADC = 102.3
-maxpes for 12 bit ADC = 204.8
-maxpes for 13 bit ADC = 409.6
+pes in SiPM for Qbb blob = 747.7
+maxpes for 12 bit ADC = 273.0
+maxpes for 13 bit ADC = 546.1
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div>
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=396ea0b8-14a4-4ab1-8648-c5a86f09ceb0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -8439,10 +8200,10 @@ maxpes for 13 bit ADC = 409.6
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Summary:-VUV-HD">Summary: VUV HD<a class="anchor-link" href="#Summary:-VUV-HD">¶</a></h2><ul>
-<li>The design constrain of not using TPB yields to a detector with two DTP instrumented with SiPMs.</li>
+<li>The design constrain of not using TPB yields to a detector with two DTPs instrumented with SiPMs.</li>
 <li>The ideal scheme to measure S2 is a fully tiled DTP (as proposed by nEXO) which, however appears extremely challenging in terms of cost, power dissipation, ASIC impedance (due to the very high capacitance), dynamic range and throughput.</li>
-<li>Some of these challenges are mitigated by considering smaller SiPMs (e.g., 6x6 mm2), but the impact on energy resolution need to be evaluated. The cost is reduced but still expensive (~10 M€). The problem of throughput and dynamic range still reamins.</li>
-<li>Operation of the DTP requires very likely cold gas, given the large power dissipation needed and the requirement of cooling the SiPMs to -40 C.</li>
+<li>Some of these challenges are mitigated by considering smaller SiPMs (e.g., 6x6 mm$^2$), but the impact on energy resolution need to be evaluated. The cost is reduced by 1/3 (~10 M€). The problem of throughput and dynamic range still reamins.</li>
+<li>Operation of the DTP requires cold gas, given the large power dissipation needed and the requirement of cooling the SiPMs to -40 C.</li>
 <li>Krypton S1 cannot be observed. Observation of 511 keV gammas from Na-22 is feasible but not trivial.</li>
 </ul>
 </div>
@@ -8455,11 +8216,11 @@ maxpes for 13 bit ADC = 409.6
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Veto-on-TPB-and-HD-baseline">Veto on TPB and HD baseline<a class="anchor-link" href="#Veto-on-TPB-and-HD-baseline">¶</a></h2><ul>
-<li>The veto on TPB is a (debatable) requirement for NEXT-BOLD.</li>
-<li>I see no strong arguments to veto TPB in the case of NEXT-HD. On the contrary, as we will see, allowing TPB simplifies detector design and makes it very affordable.</li>
-<li>The performance of HD in the search for bb0nu will depend on achieving the best possible energy resolution and topological signal, as well as reducing at maximum the radioactive budget. None of this requirements are affected by using or not TPB.</li>
-<li>TPB may be a problem for BOLD (to be demonstrated), but we are very far yet to have a feasible BOLD concept. HD design should not depend on a (potential) constrain of a future (and not guaranteed) detector.</li>
+<h2 id="Veto-on-TPB-and-HD/BOLD">Veto on TPB and HD/BOLD<a class="anchor-link" href="#Veto-on-TPB-and-HD/BOLD">¶</a></h2><ul>
+<li>The veto on TPB is a (<strong>debatable</strong>) requirement for NEXT-BOLD. To my knowledge the effect on TPB on Ba2+ tagging has not been fully quantified.</li>
+<li>I see no strong arguments to veto TPB in the case of NEXT-HD. On the contrary, as shown below, allowing TPB simplifies detector design and makes it very affordable.</li>
+<li>The performance of HD in the search for $\beta\beta0\nu$ will depend on achieving the best possible energy resolution and topological signal, as well as reducing at maximum the radioactive budget. None of this requirements are affected by using or not TPB.</li>
+<li>However, if we need to veto TPB for BOLD, a future detector based on pDTPs, although challenging and "expensive", appears feasible, provide we can quantify good performance for S2 measurement with a pDTP.</li>
 </ul>
 </div>
 </div>
@@ -8472,7 +8233,7 @@ maxpes for 13 bit ADC = 409.6
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="HD-Baseline">HD Baseline<a class="anchor-link" href="#HD-Baseline">¶</a></h2><ul>
-<li>The simplest configuration is to use a Sparse Tracking Plane (STP) similar to those already in operation in previous NEXT detectors and a Barrel of optical fibers (BFD).</li>
+<li>The simplest configuration would be to use a Sparse Tracking Plane (STP) similar to those already in operation in previous NEXT detectors and a Barrel of optical fibers (BFD).</li>
 </ul>
 </div>
 </div>
@@ -8486,9 +8247,9 @@ maxpes for 13 bit ADC = 409.6
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="The-BFD">The BFD<a class="anchor-link" href="#The-BFD">¶</a></h2><ul>
 <li>Made of WLSF  of 1 mm, coated with TP, readout by SiPMs.</li>
-<li>Detector has ~7000 fibers readout by ~70 bSiPMs of 10 x 10 mm2</li>
-<li>Enough light to detect Krypton and small DCR (can operate at -20C and still see the Krypton)</li>
-<li>Total cost under 100 k€</li>
+<li>Detector has ~7000 fibers readout by ~70 bSiPMs of 10 x 10 mm$^2$ (or 195 SiPMs of 10 x 10 mm$^2$).</li>
+<li>Enough light to detect Krypton and small dcR (can operate at -20C and still see the Krypton)</li>
+<li>Total cost ~<strong>100 k€</strong></li>
 </ul>
 </div>
 </div>
@@ -8613,11 +8374,12 @@ fibers:
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="The-STP">The STP<a class="anchor-link" href="#The-STP">¶</a></h2><ul>
-<li>blue SiPM of 1x1 mm2, thus cost of SiPMs reduced by factor 7 (blue to VUV) x 36 (area of silicon) = 252</li>
+<li>blue SiPM of 1x1 mm$^2$, thus cost of SiPMs reduced by factor 7 (blue to VUV) x 36 (area of silicon) = 252</li>
 <li>Area per SiPM is 36 times smaller than in DTP. Can observe spe, not saturating S2 with 10 bit ADC. ASIC much simplified.</li>
-<li>Does not need to measure S1, thus ZS is possible. Throughput reduced by a large factor.</li>
+<li>Does not need to measure S1, thus ZS is possible. Throughput reduced by a large factor (~<strong>90 %</strong>).</li>
 <li>Small SiPMs, small capacitance, 10 bit ADC: Much reduced cost of electronics, simplicity and less power dissipation.</li>
 <li>No cooling complications</li>
+<li>Cost ~<strong>1M€</strong> (leading cost now is electronics).</li>
 </ul>
 </div>
 </div>
@@ -8627,14 +8389,14 @@ fibers:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [105]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [116]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">nkR</span> <span class="o">=</span> <span class="mf">8.7e+4</span><span class="o">/</span><span class="mi">20</span>
 <span class="n">nhkr</span> <span class="o">=</span> <span class="n">nhits</span><span class="p">(</span><span class="n">nkR</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"pes in SiPM for kR = </span><span class="si">{</span><span class="n">nhkr</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"pes in SiPM for Qbb blob = </span><span class="si">{</span><span class="mi">6</span><span class="o">*</span><span class="n">nhkr</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"maxpes for 12 bit ADC = </span><span class="si">{</span><span class="n">maxpes</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"maxpes for 10 bit ADC = </span><span class="si">{</span><span class="n">maxpes</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8649,7 +8411,36 @@ fibers:
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>pes in SiPM for kR = 3.5
 pes in SiPM for Qbb blob = 20.8
-maxpes for 12 bit ADC = 51.1
+maxpes for 10 bit ADC = 68.2
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c3d2569a-6233-47b2-a37c-68c38f35fb9b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [107]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cost of STP silicon (2 planes, f=0.1) </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.01</span><span class="o">*</span><span class="w"> </span><span class="n">sipm_cost_mm2</span><span class="o">*</span><span class="w"> </span><span class="n">hdtp</span><span class="o">.</span><span class="n">dtp</span><span class="o">.</span><span class="n">area</span><span class="o">/</span><span class="n">mm2</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> €"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cost of DTP electronics) </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">10</span><span class="o">*</span><span class="w"> </span><span class="n">hdtp</span><span class="o">.</span><span class="n">dtp</span><span class="o">.</span><span class="n">n_sipm</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> €"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>cost of STP silicon (2 planes, f=0.1) 2.94e+04 €
+cost of DTP electronics) 7.60e+05 €
 </pre>
 </div>
 </div>
@@ -8662,26 +8453,24 @@ maxpes for 12 bit ADC = 51.1
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="DTP-for-HD-(Baseline)?">DTP for HD (Baseline)?<a class="anchor-link" href="#DTP-for-HD-(Baseline)?">¶</a></h2><ul>
-<li>Does it make sense to build a DTP for HD baseline?</li>
-<li>Assumig that S1 is measured by BFD cooling is not necessary, since S2 is measured with a finite number of SiPMs and is a much larger signal than DC.</li>
-<li>If S1 is not measured, ZS becomes possible, thus solving the problem of throughput.</li>
+<h2 id="But-a-pDTP-may-be-a-better-option-for-HD-baseline">But a pDTP may be a better option for HD baseline<a class="anchor-link" href="#But-a-pDTP-may-be-a-better-option-for-HD-baseline">¶</a></h2><ul>
+<li>Since S1 will be measured by the BFD, the pDTP does not need to measure it. Thus, cooling the SiPMs is not necessary and ZS becomes feasible. This reduces the cost and complexity of the system, and makes credible to build one in the "short" term.</li>
 <li>The problem of dynamic range remains, though. We need spe for calibration and we cannot afford saturation of S2. This may be solved by using dual channel ADCs.</li>
-<li>The cost is larger than the STP, but perhaps affordable. For example, a DTP with SiPMs of 6x6 mm2 would cost 2 M€. A fully tiled DTP would cost 5 M€.</li>
+<li>The cost is 2 x STP, still affordable. A fDTP with SiPMs of 6x6 mm$^2$ would cost ~<strong>2 M€</strong>.</li>
 </ul>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f606402d-9c89-4884-b391-293872b9ec69">
+</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f606402d-9c89-4884-b391-293872b9ec69">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [106]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [117]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cost of DTP silicon (2 planes, f=0.36) </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.36</span><span class="o">*</span><span class="w"> </span><span class="n">sipm_cost_mm2</span><span class="o">*</span><span class="w"> </span><span class="n">hdtp</span><span class="o">.</span><span class="n">dtp</span><span class="o">.</span><span class="n">area</span><span class="o">/</span><span class="n">mm2</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> €"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cost of DTP electronics) </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">15</span><span class="o">*</span><span class="w"> </span><span class="n">hdtp</span><span class="o">.</span><span class="n">dtp</span><span class="o">.</span><span class="n">n_sipm</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> €"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cost of DTP electronics) </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">10</span><span class="o">*</span><span class="w"> </span><span class="n">hdtp</span><span class="o">.</span><span class="n">dtp</span><span class="o">.</span><span class="n">n_sipm</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> €"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8695,36 +8484,7 @@ maxpes for 12 bit ADC = 51.1
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>cost of DTP silicon (2 planes, f=0.36) 1.06e+06 €
-cost of DTP electronics) 1.14e+06 €
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0266a3f4-38c0-479d-bd0a-343370b7abc5">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [109]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cost of DTP silicon (2 planes, f=0.36) </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w">  </span><span class="n">sipm_cost_mm2</span><span class="o">*</span><span class="w"> </span><span class="n">hdtp</span><span class="o">.</span><span class="n">dtp</span><span class="o">.</span><span class="n">area</span><span class="o">/</span><span class="n">mm2</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> €"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cost of DTP electronics) </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">15</span><span class="o">*</span><span class="w"> </span><span class="n">hdtp</span><span class="o">.</span><span class="n">dtp</span><span class="o">.</span><span class="n">n_sipm</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> €"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>cost of DTP silicon (2 planes, f=0.36) 2.94e+06 €
-cost of DTP electronics) 1.14e+06 €
+cost of DTP electronics) 7.60e+05 €
 </pre>
 </div>
 </div>
@@ -8739,8 +8499,8 @@ cost of DTP electronics) 1.14e+06 €
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="What-would-be-the-added-value-of-DTP?">What would be the added value of DTP?<a class="anchor-link" href="#What-would-be-the-added-value-of-DTP?">¶</a></h2><ul>
 <li>Same performance in the tracking function than STP (determined by pitch, ~10 mm)</li>
-<li>Will provide an additional measurement of the energy, with different corrections (systematics) than BFD.</li>
-<li>If energy resolution with a DTP (and in particular with a DTP of 36%) is at least as good as that achieved by the BFD, then the physics argument may is compelling. Energy resolution is one parameter where we have marging for improvements.</li>
+<li>Provides an additional measurement of the energy, with different corrections (systematics) than BFD.</li>
+<li>If energy resolution with a pDTP is at least as good as that achieved by the BFD, then the physics argument is compelling. Energy resolution is one parameter where we have marging for improvements.</li>
 </ul>
 </div>
 </div>
@@ -8753,13 +8513,14 @@ cost of DTP electronics) 1.14e+06 €
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Summary">Summary<a class="anchor-link" href="#Summary">¶</a></h2><ul>
-<li>The "no TPB" restriction imposes very hard requirements on our detector and increase the cost of the system by a very large factor. The current exercise reveals that we must have a very compelling argument to impose the TPB veto.</li>
-<li>HD Baseline seems sound enough for a detector whose physics goals are to achieve a sensitivity of 10$^{27}$ y in $\beta\beta0\nu$. HDB may operate with a STP or a DTP.</li>
+<li>The "no TPB" restriction imposes very hard requirements on our detector and increase the cost of the system by a very large factor. While this requirements may be necessary for BOLD (to be demonstrated) it is not needed for HD.</li>
+<li>HD Baseline seems sound enough for a detector whose physics goals are to achieve a sensitivity of 10$^{27}$ y in $\beta\beta0\nu$. HDB may operate with a STP or a DTP. Energy resolution is a compelling argument to build a DTP for HD baseline.</li>
+<li>Preparing a future DPT (vuv) for BOLD is another crucial argument. Showing excellent energy resolution with a pDTP in HD, will support extending the design to the more challenging and expensive case of VUV.</li>
 </ul>
 </div>
 </div>
 </div>
-</div>
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16cafa21-7095-4867-ac4f-b438d8406cb1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -8767,8 +8528,8 @@ cost of DTP electronics) 1.14e+06 €
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="A-path-forward-towards-HD-:-HD-DEMO">A path forward towards HD : HD-DEMO<a class="anchor-link" href="#A-path-forward-towards-HD-:-HD-DEMO">¶</a></h2><ul>
-<li>Test the performance of BFD, STP and DTP in HD-DEMO. The prototype is large enough to provide a good measurement of energy and tracking in the double escape peak of Tl, as well as a full energy calibration, from Kr to Tl.</li>
-<li>HD-DEMO is being prepared to operate with a STP and standard (NEXT-White) electronics. The first phase of HD-DEMO operation (~2025 and 2026) would asess the performance of the simplest configuration.</li>
+<li>HD-DEMO can test the performance of BFD, STP and DTP. The prototype is large enough to provide a good measurement of energy and tracking in the double escape peak of Tl, as well as a full energy calibration, from Kr to Tl.</li>
+<li>HD-DEMO is being prepared to operate with a STP and standard (NEXT-White) electronics. The first phase of HD-DEMO operation (~2025-2026) would asess the performance of the simplest configuration.</li>
 <li>During HD-Demo phase I, we should build a DTP with the goal of operating it in 2027.Operation of the DTP in HD-DEMO would permit us to assess its merits concerning enery resolution.</li>
 </ul>
 </div>
@@ -8782,10 +8543,26 @@ cost of DTP electronics) 1.14e+06 €
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="A-path-forward-towards-HD-:-N100-U2">A path forward towards HD : N100-U2<a class="anchor-link" href="#A-path-forward-towards-HD-:-N100-U2">¶</a></h2><ul>
-<li>Get the pun? U2 means "upgrade 2" (with respect to model 1, e.g, next-100), but also, sends a message. If we are going to succeed as a collaboration, everybody should get involved in U2. You too!</li>
-<li>U2 will implement a BFD and new electronics, including a new ASIC. The current plan is to leave NEXT-100 STP. But this is a great opportunity for the groups interested in the DTP to join the effort. Why not build a DTP for U2? New collaborators would be more than welcomed to join the DTP effort.</li>
-<li>Given that the cathode is free, there may be even the possibility to add a camera to test CRAB reconstruction of tracks at large scale.</li>
-<li>The time-frame of U2 could be 3-4 years (e.g, operation of NEXT-100 until the end of 2027, upgrade in 2028, operation of upgrade in 2029), well timed with the potential availability of xenon from KZ.</li>
+<li>We are currently considering N100-U1. This is "upgrade 1" with respect to NEXT-10 and will implement a BFD and new electronics. The current plan is to leave NEXT-100 STP. The time scale to prepare U1 is 3 years (during this time we will operate NEXT-100). Then one could operate U1 for 1-2 years.</li>
+<li>Why not build N100-U2? The "upgrade 2" (get the pun? You too!) would add a pDTP to U1 including the ASIC and the construction time scale could be 4-5 years.</li>
+<li>U2 would offer a great opportunity for new collaborators to join the DTP effort.</li>
+<li>Given that the cathode is free, we could consider the possibility to add a camera to test CRAB reconstruction of tracks at large scale.</li>
+</ul>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5665f8a0-5cad-4730-91c8-4a1eb7c68d8b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Time-line">Time line<a class="anchor-link" href="#Time-line">¶</a></h2><ul>
+<li>2025-2027: Operate NEXT-100. Build and operate HD-DEMO.</li>
+<li>2028-2029: Build and operate U1.</li>
+<li>2030-2031: Build and operate U2.</li>
+<li>2032-2033: Build HD. Xenon from KamLAND-Zen may be available around this date.</li>
 </ul>
 </div>
 </div>
@@ -8798,23 +8575,9 @@ cost of DTP electronics) 1.14e+06 €
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="HD-White-paper.">HD White paper.<a class="anchor-link" href="#HD-White-paper.">¶</a></h2><ul>
-<li>A CDR (or pre-CDR) may be premature today, but we should produce a document that acts both as a roadmap and as an advertising brochure for potential collaborators.</li>
-<li>We could write a White Paper describing (with more detail than in the EOI) the basic elements of HD (this include not-so-sexy things suchs as grids of 2 m and gas system), as well as HD-DEMO and NEXT-100U2.</li>
+<li>We should produce a document that acts both as a roadmap and as an advertising brochure for potential collaborators.</li>
+<li>We could write a White Paper in late 2025 or 2026 describing a path to HD, including NEXT-100 operation, HD-DEMO and N100-U2. The White paper could also describe a path to BOLD (starting from HD operation with pDTP).</li>
 </ul>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=508488d3-77d9-4111-9984-5a0c71ebbdd2">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -8843,7 +8606,10 @@ require(
             history: true,
             transition: "slide",
             slideNumber: "",
-            plugins: [RevealNotes]
+            plugins: [RevealNotes],
+            width: 960,
+			      height: 700,
+
         });
 
         var update = function(event){
