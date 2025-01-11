@@ -1,0 +1,216 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{lmodern}
+\usepackage{hyperref}
+
+\begin{document}
+
+\section{Discussion: Photon Generation and Barrel Intersections}
+
+\subsection{Geometry Setup}
+We consider a right circular cylinder of diameter \(d\) and length \(L\). Its axis is aligned with the \(z\)-axis, ranging from \(z = 0\) (one end-cap) to \(z = L\) (the opposite end-cap). The cylinder radius is \(R = \tfrac{d}{2}\).
+
+\vspace{0.5em}
+\noindent
+\textbf{Emission Points.} We place \(N\) emission points uniformly along a diameter of the end-cap at \(z = 0\). In Cartesian coordinates, the chosen diameter lies along the \(x\)-axis with \(y = 0\), so the \(x\)-positions range from \(-R\) to \(+R\). Each point has coordinates \(\bigl(x_i, 0, 0\bigr)\), for \(i = 1,\ldots,N\), uniformly spaced.
+
+\subsection{Photon Directions}
+From each emission point, we emit photons isotropically over \(4\pi\) steradians. A convenient way to generate a random direction vector 
+\(\boldsymbol{v} = (v_x, v_y, v_z)\) is:
+\[
+\phi = 2\pi \,U_1,\quad \cos(\theta) = 2\,U_2 - 1, 
+\]
+where \(U_1,\,U_2 \in [0,1]\) are uniform random numbers. Then
+\[
+\theta = \arccos\bigl(2U_2 - 1\bigr), 
+\quad
+v_x = \sin(\theta)\cos(\phi), 
+\quad
+v_y = \sin(\theta)\sin(\phi), 
+\quad
+v_z = \cos(\theta).
+\]
+
+\subsection{Intersection with the Barrel}
+A photon starts at \(\mathbf{r}_0 = (x_0,0,0)\) with direction \(\boldsymbol{v}=(v_x,v_y,v_z)\). Its trajectory is 
+\[
+\mathbf{r}(t) = \mathbf{r}_0 + t\,\boldsymbol{v}, 
+\quad t \ge 0.
+\]
+The cylindrical barrel is defined by \(x^2 + y^2 = R^2\) and \(0 \le z \le L\).
+
+\paragraph{Distance to Barrel.}
+To find if or where the photon first hits the curved surface, we solve the equation
+\[
+(x_0 + t\,v_x)^2 + \bigl(0 + t\,v_y\bigr)^2 = R^2.
+\]
+This yields a quadratic in \(t\). We look for the smallest positive root \(t_{\mathrm{side}}\). If that root exists and the corresponding \(z\)-coordinate,
+\[
+z(t_{\mathrm{side}}) = 0 + t_{\mathrm{side}}\,v_z,
+\]
+lies in the interval \([0, L]\), then the photon hits the barrel at that \(t\)-value.
+
+\subsection{Distance to the End-Cap}
+We also check whether the photon can reach the top end-cap at \(z = L\). If \(v_z > 0\), the intersection time is
+\[
+t_{\mathrm{top}} = \frac{L - 0}{v_z} = \frac{L}{v_z}, 
+\]
+provided \(t_{\mathrm{top}}>0\). If this \(t_{\mathrm{top}} < t_{\mathrm{side}}\) or if \(t_{\mathrm{side}}\) is invalid, then the photon leaves the cylinder through the top cap rather than hitting the barrel.
+
+\subsection{Comparison of Distances}
+We compare \(t_{\mathrm{side}}\) and \(t_{\mathrm{top}}\):
+\begin{itemize}
+  \item If \(\,t_{\mathrm{side}}\) is valid, positive, and smaller than \(t_{\mathrm{top}}\), then the photon strikes the barrel first.
+  \item If \(\,t_{\mathrm{top}} < t_{\mathrm{side}}\), the photon escapes through the end-cap at \(z = L\).
+  \item If \(v_z \le 0\), the photon never goes forward to \(z = L\), so only the barrel intersection (if valid) or exiting back through \(z<0\) are relevant.
+\end{itemize}
+
+\subsection{Counting Barrel Hits}
+For each emission point along the diameter, we simulate a large number of photons (random directions). We increment a counter whenever a photon intersects the barrel first (i.e., it does not escape through \(z = L\) earlier). The result is the total count of photons that reach the barrel from that point.
+
+\subsection{Summary of the Procedure}
+\begin{enumerate}
+\item \textbf{Generate Source Points:} Create \(N=100\) positions \(\bigl(x_i,0,0\bigr)\) along the diameter of the end-cap.
+\item \textbf{For Each Source Point:} 
+  \begin{itemize}
+    \item Generate a large number of random directions uniformly over \(4\pi\).
+    \item Solve for barrel intersection time \(t_{\mathrm{side}}\). Check \(z\in[0,L]\).
+    \item Solve for top end-cap intersection time \(t_{\mathrm{top}}\) if \(v_z>0\).
+    \item If \(\,t_{\mathrm{side}}\) exists and is smaller than \(\,t_{\mathrm{top}}\), count a ``barrel hit.''
+  \end{itemize}
+\item \textbf{Accumulate} the count of barrel hits. Finally, you have the number of photons that reach the barrel from each source point.
+\end{enumerate}
+
+This Monte Carlo approach, with direct geometric intersection checks, yields how many photons (out of the total generated) hit the cylinder's curved surface as opposed to escaping through its end-cap.
+
+
+\section{Discussion: Angular Sectors on the Barrel}
+
+\subsection{Recap of Cylinder Geometry}
+We have a right circular cylinder of diameter \(d\) and length \(L\), aligned with the \(z\)-axis from \(z=0\) (bottom end-cap) to \(z=L\) (top end-cap). Its radius is \(R = \tfrac{d}{2}\). We place source points along one diameter of the bottom end-cap at \(z=0\), with coordinates \(\bigl(x_i,0,0\bigr)\) for \(x_i \in [-R,\,+R]\).
+
+\subsection{Photon Emission and Barrel Intersection}
+Each source point emits a large number of photons isotropically in \(4\pi\). For a given direction 
+\(\boldsymbol{v} = (v_x, v_y, v_z)\), we seek the first intersection with either:
+\begin{itemize}
+  \item The cylindrical \emph{barrel}, where \(x^2 + y^2 = R^2\) and \(0 \le z \le L\), 
+  \item Or the top end-cap at \(z=L\) (if \(v_z>0\)).
+\end{itemize}
+We compare the parametric distance \(t_{\mathrm{side}}\) to the barrel versus \(t_{\mathrm{top}}\) to the end-cap. A photon ``hits the barrel first'' if \(t_{\mathrm{side}} \) is positive, valid for \(0 \le z \le L\), and smaller than \(t_{\mathrm{top}}\).
+
+\subsection{Dividing the Barrel into Angular Sectors}
+We subdivide the curved surface of the cylinder into \(N_{\mathrm{sectors}}\) \emph{angular} slices around the axis. Each sector covers a range of azimuthal angle \(\phi\), where
+\[
+\phi = \arctan2(y,\, x) \quad\in [0, 2\pi).
+\]
+If \(\phi < 0\), we can add \(2\pi\) to keep it in \([0,2\pi)\). With \(N_{\mathrm{sectors}}=500\) (for example), the sector index is
+\[
+\text{sector\_idx} \;=\; \left\lfloor \frac{\phi}{2\pi} \times N_{\mathrm{sectors}} \right\rfloor.
+\]
+
+\subsection{Counting Hits per Sector}
+Whenever a photon intersects the barrel first, we:
+\begin{enumerate}
+  \item Determine \(\,(x_{\mathrm{side}},\,y_{\mathrm{side}},\,z_{\mathrm{side}})\) from \(t_{\mathrm{side}}\).
+  \item Convert to \(\phi = \arctan2\bigl(y_{\mathrm{side}},\,x_{\mathrm{side}}\bigr)\).
+  \item Find the corresponding sector index as described above.
+  \item Increment that sector's hit count for the current source point.
+\end{enumerate}
+
+\subsection{Maximum Hits in a Single Sector}
+For each source point, we also track the \emph{maximum} number of hits in a single sector among the total \(N_{\mathrm{sectors}}\). This quantity indicates where the photons most intensely strike the barrel, at least in terms of azimuthal distribution, for that particular source point.
+
+\subsection{Summary of Steps}
+\begin{enumerate}
+  \item Place \(N\) source points along the bottom end-cap diameter.
+  \item For each source point, emit \(N_{\mathrm{dir}}\) photons in random directions over the full sphere.
+  \item Calculate if and where each photon hits the barrel or top end-cap.
+  \item If it hits the barrel, compute \(\phi\) and update the sector's count.
+  \item At the end, report:
+  \begin{itemize}
+    \item The total number of photons hitting the barrel.
+    \item The maximum hit count among all barrel sectors.
+  \end{itemize}
+\end{enumerate}
+
+By partitioning the barrel into angular slices and identifying the sector with the largest photon count, we gain insight into the angular distribution of photons around the cylinder's axis for each emission point.
+
+\section{Discussion: Photons in a Cylindrical Volume with Partial Re-Emission}
+
+\subsection{Geometry and Photon Generation}
+We consider a right circular cylinder of radius $R$ and length $Z$, with its axis along the $z$-axis. The cylinder extends from $z = 0$ (one end-cap) to $z = Z$ (the other end-cap). We aim to generate a total of $N_{\mathrm{points}}$ emission points \emph{inside} the cylinder volume, each producing $N_{\gamma}$ photons isotropically.
+
+\paragraph{Uniform Sampling in the Cylinder Volume.}
+To ensure the points are uniformly distributed, we can generate random $r,\theta,z$ such that
+\[
+  r = R \sqrt{U_1}, 
+  \quad \theta = 2\pi U_2, 
+  \quad z = Z \,U_3,
+\]
+where $U_1, U_2, U_3$ are independent uniform random numbers in $[0,1]$. Then we convert to Cartesian via
+\[
+  x = r\cos(\theta),\quad y = r\sin(\theta),\quad 0 \le z \le Z.
+\]
+This yields points uniformly within the cylinder of radius $R$ and height $Z$.
+
+\subsection{Photon Propagation}
+Each photon is emitted isotropically (uniform in $4\pi$ steradians). We trace its straight-line path until it either:
+\begin{itemize}
+  \item \textbf{Hits the Barrel:} The lateral surface at radius $R$, with $0 \le z \le Z$. We count such a photon as a \emph{barrel hit}. The photon is then terminated (since we only track first collisions or final absorption).
+  \item \textbf{Hits an End-Cap:} The planes $z=0$ or $z=Z$. Upon hitting an end-cap, the photon is \emph{absorbed} with some probability, and re-emitted with the complementary probability. Concretely, if the probability of re-emission is $\alpha$, then:
+  \begin{equation*}
+    \alpha \;=\; 0.5 \;\times\; 0.65 \;\times\; 0.8 \;=\; 0.26.
+  \end{equation*}
+  Thus, $26\%$ of photons hitting an end-cap are re-emitted isotropically from the same spot, while $74\%$ are fully absorbed (lost).
+\end{itemize}
+If a photon is re-emitted, we generate a new random direction (again isotropic) from that end-cap position. The process continues until the photon either hits the barrel or is eventually absorbed by an end-cap.
+
+\subsection{Algorithmic Outline}
+\begin{enumerate}
+\item \textbf{Generate $N_{\mathrm{points}}$ points} uniformly in the cylinder volume.
+\item For each point:
+  \begin{enumerate}
+    \item Generate $N_{\gamma}$ photons, each with a random direction over the sphere.
+    \item \textbf{While photon is alive}:
+      \begin{itemize}
+        \item Solve for intersection with barrel (the curved surface).
+        \item Solve for intersection with top or bottom end-caps.
+        \item Compare which intersection occurs first.
+        \item If the barrel is hit first, \emph{increment the count of barrel hits} and terminate the photon.
+        \item If an end-cap is hit:
+          \begin{itemize}
+            \item Absorb with probability $(1-\alpha)$.
+            \item Re-emit with probability $\alpha$: Generate new isotropic direction from that end-cap coordinate.
+            \item If absorbed, terminate the photon; if re-emitted, continue the loop.
+          \end{itemize}
+      \end{itemize}
+    \end{enumerate}
+\item Output the total number of photons that reached the barrel across all points.
+\end{enumerate}
+
+\subsection{Key Observations}
+\begin{itemize}
+  \item \textbf{Multiple Reflections/Re-emissions} can occur, since each end-cap reflection has a probability $\alpha = 0.26$.
+  \item \textbf{Termination Conditions:}
+    \begin{itemize}
+      \item Barrel collision (count it, then stop),
+      \item Absorption at end-cap (stop),
+      \item Potential indefinite bouncing if $\alpha>0$, but on average few re-emissions occur before absorption or barrel collision.
+    \end{itemize}
+  \item \textbf{Performance Considerations:} For large $N_{\mathrm{points}} \times N_{\gamma}$, ensure that repeated random re-emissions do not slow simulation excessively.
+\end{itemize}
+
+\subsection{Result}
+After simulating all photons, one obtains:
+\begin{itemize}
+  \item The total number (or fraction) of photons hitting the barrel.
+  \item Insights into how end-cap absorption and partial re-emission impact overall detection on the barrel.
+\end{itemize}
+
+\end{document}
+
+\end{document}
+
